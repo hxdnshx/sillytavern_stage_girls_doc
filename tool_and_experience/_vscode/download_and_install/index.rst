@@ -42,7 +42,7 @@
 .. code-block:: bash
   :caption: 将会依次安装 VSCode、Git、Python、..., 也许可以去掉电脑上已经有的?
 
-  winget install Microsoft.VisualStudioCode Git.Git Python.Python.3.13 OpenJS.NodeJS.TS MikeFarah.yq LLVM.ClangFormat
+  winget install Microsoft.VisualStudioCode Git.Git Python.Python.3.13 OpenJS.NodeJS.LTS MikeFarah.yq LLVM.ClangFormat
 
 .. hint::
 
