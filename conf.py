@@ -59,12 +59,12 @@ html_theme = 'sphinx_book_theme'
 html_theme_options = {
     'icon_links': [
         {
-            'name': 'Gitlab',
-            'url': 'https://gitlab.com/sillyme/doc',
-            'icon': 'fa-brands fa-gitlab',
+            'name': 'Github',
+            'url': 'https://github.com/StageDog/sillytavern_stage_girls_doc',
+            'icon': 'fa-brands fa-github',
         }
     ],
-    'repository_url': 'https://gitlab.com/sillyme/doc',
+    'repository_url': 'https://github.com/StageDog/sillytavern_stage_girls_doc',
     'search_as_you_type': True,
     'show_nav_level': 0,
     'show_prev_next': True,
