@@ -5,13 +5,11 @@
 你当然可以利用 module 进行分文件编写:
 
 .. code-block:: typescript
-  :linenos:
   :caption: ``src/index.ts``
 
   import { detectMessageUpdated } from './util.js'  // 注意是 .js
 
 .. code-block:: typescript
-  :linenos:
   :caption: ``src/util.ts``
 
   export function detectMessageUpdated(message_id: number) {
@@ -44,7 +42,6 @@
 然后编写 rollup.config.js 来配置要如何打包. 一般而言, 按下面的配置即可:
 
 .. code-block:: javascript
-  :linenos:
   :emphasize-lines: 8-11
 
   import path from 'path'
