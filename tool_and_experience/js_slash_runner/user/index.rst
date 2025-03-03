@@ -11,3 +11,4 @@
   publish/index
   update/index
   resource/index
+  advanced/index
