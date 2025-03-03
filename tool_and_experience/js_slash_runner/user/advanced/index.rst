@@ -9,6 +9,8 @@
 
   import { detectMessageUpdated } from './util.js'  // 注意是 .js
 
+  eventOn(tavern_events.MESSAGE_UPDATED, detectMessageUpdated);
+
 .. code-block:: typescript
   :caption: ``src/util.ts``
 
