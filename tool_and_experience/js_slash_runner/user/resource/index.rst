@@ -72,3 +72,19 @@ ESM>CDN
     declare module "https://esm.sh/yaml" {
       export * from "yaml";
     }
+
+.. warning::
+
+  部分模块库可能需要你采用先导入再导出的方法:
+
+  .. code-block:: typescript
+
+    declare module 'https://esm.sh/mime' {
+      import mime from 'mime';
+      export default mime;
+    }
+
+    declare module 'https://esm.sh/parse-filepath' {
+      import parseFilepath from 'parse-filepath';
+      export = parseFilepath;
+    }
