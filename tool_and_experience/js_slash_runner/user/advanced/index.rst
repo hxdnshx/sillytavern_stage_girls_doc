@@ -38,7 +38,8 @@
 
 .. code-block:: bash
 
-  npm i -g rollup @rollup/plugin-typescript path url
+  npm i -g rollup
+  npm i --save-dev @rollup/plugin-typescript path url glob
 
 然后编写 rollup.config.js 来配置要如何打包. 一般而言, 按下面的配置即可:
 
