@@ -44,17 +44,18 @@
 
 .. code-block:: javascript
   :linenos:
-  :emphasize-lines: 7-10
+  :emphasize-lines: 8-11
 
-  import typescript from '@rollup/plugin-typescript';
   import path from 'path'
+  import typescript from '@rollup/plugin-typescript';
   import { fileURLToPath } from 'url';
+  import { globSync } from 'glob';
 
   export default {
     input: Object.fromEntries(
       [
-        'src/角色卡1/index.ts',  // 填入你某张角色卡脚本的入口文件
-        'src/角色卡2/index.ts',
+        ...globSync('src/**/index.ts'),  // 这一句会将 src 中所有的 index.ts 分别视为入口文件
+        'src/角色卡/main.ts',             // 你某张角色卡脚本的入口文件
       ].map(file => [
         file.slice(0, file.length - path.extname(file).length),
         fileURLToPath(new URL(file, import.meta.url)),
