@@ -91,8 +91,8 @@
 .. code-block:: typescript
   :caption: ``src/index.ts``
 
-  //去掉import并不会导致当前文件的语法错误，但是会导致最终webpack时不会将对应的 ts 文件打包在内
-  import './util' //即要引入的另一个文件，有多个文件则import多个。只有在 index.ts 中才能 import。
+  // 注意，下面不加 .ts 后缀哦
+  import {detectMessageUpdated} from './util' //即要引入的另一个文件，有多个文件则import多个。只有在 index.ts 中才能 import。
 
   eventOn(tavern_events.MESSAGE_UPDATED, detectMessageUpdated);
 
@@ -101,17 +101,69 @@
 .. code-block:: typescript
   :caption: ``src/util.ts``
 
-  function detectMessageUpdated(message_id: number) { //相对于上面的，这里没 export 了哦
+  export function detectMessageUpdated(message_id: number) {
     alert(`你刚刚修改了第 ${message_id} 条聊天消息对吧😡`);
   }
-
-  window.detectMessageUpdated = detectMessageUpdated;//需要手动挂到 window 上作为导出
 
 ========================================================================================================================
 打包为单文件(webpack)
 ========================================================================================================================
 
-在当前的工程里，你除了js项目本身的 ``package.json`` 外，还需要新增一个文件用于描述构建过程，如下：
+由于一开始的 frontend_writer 没有 ``package.json`` 和 ``webpack.config.js`` ，因此需要补充这些文件，用于描述构建过程，如下：
+
+
+.. code-block:: json
+  :caption: ``package.json``
+
+  {
+      "name": "ModExample",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+          "build:ts": "tsc -p ./tsconfig.json"
+      },
+      "repository": {
+          "type": "git",
+          "url": "https://gitlab.com/novi028/JS-Slash-Runner"
+      },
+      "private": true,
+      "packageManager": "yarn@3.4.1",
+      "dependencies": {
+          "file-saver": "^2.0.5",
+          "jquery-ui": "^1.14.1",
+          "json5": "^2.2.3",
+          "jszip": "^3.10.1",
+          "lodash": "^4.17.21",
+          "moment": "^2.29.4",
+          "rxjs": "^7.8.1",
+          "yamljs": "^0.3.0"
+      },
+      "devDependencies": {
+          "@types/file-saver": "^2.0.7",
+          "@types/jquery": "^3.5.19",
+          "@types/jqueryui": "^1.12.24",
+          "@types/lodash": "^4.14.198",
+          "@types/node": "^20.6.0",
+          "@types/yamljs": "^0.2.34",
+          "@webpack-cli/generators": "^3.0.7",
+          "bootstrap": "^5.3.1",
+          "css-loader": "^6.8.1",
+          "fork-ts-checker-webpack-plugin": "^8.0.0",
+          "html-webpack-plugin": "^5.5.3",
+          "nodemon": "^3.0.1",
+          "sass": "^1.66.1",
+          "sass-loader": "^13.3.2",
+          "style-loader": "^3.3.3",
+          "ts-loader": "^9.4.4",
+          "ts-mixer": "^6.0.3",
+          "tsconfig-paths-webpack-plugin": "^4.1.0",
+          "typescript": "^5.1.6",
+          "webpack": "^5.88.2",
+          "webpack-cli": "^5.1.4",
+          "webpack-dev-server": "^4.15.1"
+      }
+  }
 
 .. code-block:: javascript
   :caption: ``webpack.config.js``
@@ -158,6 +210,8 @@
       }
   };
 
+创建完这些文件之后，需要执行 ``npm install`` 以安装所有需要的依赖
+
 那之后可以在这个目录下运行 ``webpack -c ./webpack.config.js`` 进行打包。一次正常的打包输出类似于：
 
 .. code-block:: shell
@@ -203,12 +257,9 @@
 .. code-block:: typescript
   :caption: ``src/index.ts``
 
-  //去掉import并不会导致当前文件的语法错误，但是会导致最终webpack时不会将对应的 ts 文件打包在内
-  import './util' //即要引入的另一个文件，有多个文件则import多个。只有在 index.ts 中才能 import。
-
+  import {tomlFn, detectMessageUpdated} from './util' //即要引入的另一个文件，有多个文件则import多个。只有在 index.ts 中才能 import。
   eventOn(tavern_events.MESSAGE_UPDATED, detectMessageUpdated);
-
-  alert(tomlFn()); //使用函数
+  eventOn(tavern_events.GENERATION_ENDED, tomlFn); //随便找个时间点使用它，这个是LLM回复完成的时间点，总之不报运行时错误就是代表这里成功了。（实际上也不会报
 
 另一个文件：
 
@@ -216,23 +267,19 @@
   :caption: ``src/util.ts``
 
   declare const toml: any; //避免ts报错
-  
+    
   const tomlStr = `
      title = "TOML Example"
      [owner]
      name = "John Doe"
      `;
-  function tomlFn(): any{
+  export function tomlFn(): any{
       return toml.parse(tomlStr);//使用toml库
   }
-  window.tomlFn = tomlFn;//导出函数
-
-
-  function detectMessageUpdated(message_id: number) {
+  
+  export function detectMessageUpdated(message_id: number) {
     alert(`你刚刚修改了第 ${message_id} 条聊天消息对吧😡`);
   }
-
-  window.detectMessageUpdated = detectMessageUpdated;//需要手动挂到 window 上作为导出
 
 除了代码本身之外，你还要修改 ``package.json`` 引入新的依赖：
 
