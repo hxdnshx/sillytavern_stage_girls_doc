@@ -101,7 +101,7 @@
 .. code-block:: typescript
   :caption: ``src/util.ts``
 
-  function detectMessageUpdated(message_id: number) {
+  function detectMessageUpdated(message_id: number) { //相对于上面的，这里没 export 了哦
     alert(`你刚刚修改了第 ${message_id} 条聊天消息对吧😡`);
   }
 
