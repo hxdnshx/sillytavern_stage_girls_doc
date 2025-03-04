@@ -259,7 +259,8 @@
 
   import {tomlFn, detectMessageUpdated} from './util' //即要引入的另一个文件，有多个文件则import多个。只有在 index.ts 中才能 import。
   eventOn(tavern_events.MESSAGE_UPDATED, detectMessageUpdated);
-  eventOn(tavern_events.GENERATION_ENDED, tomlFn); //随便找个时间点使用它，这个是LLM回复完成的时间点，总之不报运行时错误就是代表这里成功了。（实际上也不会报
+  eventOn(tavern_events.GENERATION_ENDED, tomlFn); 
+  //随便找个时间点使用它，这个是LLM回复完成的时间点，总之不报运行时错误就是代表这里成功了。（实际上也不会报
 
 另一个文件：
 
