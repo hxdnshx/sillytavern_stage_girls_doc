@@ -284,7 +284,7 @@ html 结构 (v1-复制粘贴代码)
 
 .. error::
 
-  在之前提供的 Profile 中，可能有 ``Live Server`` 没能成功安装的情况。此时你需要手动进行安装， `这是链接 <https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer>`
+  在之前提供的 Profile 中, 可能有 ``Live Server`` 没能成功安装的情况。此时你需要手动进行安装,  `这是链接 <https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer>`
 
 .. note::
 
