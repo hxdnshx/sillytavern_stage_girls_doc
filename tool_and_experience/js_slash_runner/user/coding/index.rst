@@ -282,6 +282,10 @@ html 结构 (v1-复制粘贴代码)
 
   你必须安装 Chrome 或 Edge 浏览器才能使用 VSCode 的调试功能.
 
+.. error::
+
+  在之前提供的 Profile 中，可能有 ``Live Server`` 没能成功安装的情况。此时你需要手动进行安装， `这是链接 <https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer>`
+
 .. note::
 
   如果你的酒馆端口不是默认的 8000, 请在 ``.vscode/launch.json`` 中调整 ``"url"``.
