@@ -45,6 +45,9 @@
   winget install Microsoft.VisualStudioCode Git.Git Python.Python.3.13 OpenJS.NodeJS.LTS MikeFarah.yq LLVM.ClangFormat
 
 .. hint::
+  里面的部分组件的安装可能需要重启才能生效，如果在后续流程中出现 ``找不到yq`` 等问题，建议重启再试试哦。
+
+.. hint::
 
   此后, 你可以重复以上命令来升级它们.
 
